@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💌 Apenas pra você</title>
+    <style>
+        /* RESET E CONFIGURAÇÕES GERAIS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #FFF0F5, #FFB6C1, #FF69B4);
+            color: #333;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* EFEITO DE FUNDO COM PARTÍCULAS */
+        .particles-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+        }
+
+        /* CONTAINER PRINCIPAL - ESTILO DE CARTA */
+        .love-letter-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 3px solid #FF1744;
+            box-shadow:
+                0 0 50px rgba(255, 23, 68, 0.3),
+                0 0 100px rgba(255, 107, 148, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ENVELOPE ANIMADO NO TOPO */
+        .envelope {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .envelope-icon {
+            font-size: 80px;
+            display: block;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #FF1744;
+        }
+
+        /* TÍTULO PRINCIPAL */
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #FF1744, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #FF1744, transparent);
+        }
+
+        /* MENSAGEM DE ABERTURA */
+        .opening-message {
+            text-align: center;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 23, 68, 0.08), rgba(255, 182, 193, 0.1));
+            border-radius: 10px;
+            border-left: 4px solid #FF1744;
+            color: #333;
+        }
+
+        /* SEÇÃO DE CONTEÚDO */
+        .content-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 255, 240, 0.1));
+            border-radius: 15px;
+            transition: all 0.3s;
+            color: #333;
+        }
+
+        .content-section:hover {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 255, 240, 0.15));
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 23, 68, 0.15);
+        }
+
+        .section-title {
+            color: #C2185B;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        .section-title i {
+            font-size: 1.2em;
+        }
+
+        /* TIMELINE DOS MOMENTOS */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #FF1744, #FFD700);
+        }
+
+        .memory {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(255, 182, 193, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #FF1744;
+            color: #333;
+        }
+
+        .memory::before {
+            content: '💝';
+            position: absolute;
+            left: -40px;
+            top: 15px;
+            background: white;
+            padding: 5px;
+            border-radius: 50%;
+            font-size: 0.8em;
+        }
+
+        .memory-date {
+            color: #C2185B;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .memory-text {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        /* GALERIA DE FOTOS */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .photo-item {
+            aspect-ratio: 1;
+            background: rgba(255, 182, 193, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            transition: all 0.3s;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid rgba(255, 23, 68, 0.2);
+        }
+
+        .photo-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 23, 68, 0.4);
+            border-color: #FF1744;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Efeito de loading para fotos */
+        .photo-item.loading {
+            background: linear-gradient(90deg,
+                    rgba(255, 182, 193, 0.2) 25%,
+                    rgba(255, 182, 193, 0.4) 50%,
+                    rgba(255, 182, 193, 0.2) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        /* ÁREA DA PERGUNTA */
+        .question-area {
+            text-align: center;
+            margin: 50px 0;
+            padding: 30px;
+            background: linear-gradient(135deg,
+                    rgba(255, 23, 68, 0.1),
+                    rgba(255, 182, 193, 0.15));
+            border-radius: 15px;
+            border: 2px solid #FF1744;
+        }
+
+        .question-text {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #333;
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
+        }
+
+        .question-text strong {
+            color: #C2185B;
+        }
+
+        /* BOTÕES */
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .answer-btn {
+            padding: 20px 50px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .answer-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.3),
+                    transparent);
+            transition: 0.5s;
+        }
+
+        .answer-btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #FF1744, #C2185B);
+            color: white;
+            box-shadow: 0 10px 25px rgba(255, 23, 68, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 35px rgba(255, 23, 68, 0.6);
+        }
+
+        .btn-no {
+            background: linear-gradient(45deg, #FFB6C1, #FFB6C1);
+            color: #C2185B;
+            border: 2px solid #FF1744;
+        }
+
+        .btn-no:hover {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        /* RESPOSTA */
+        .response {
+            text-align: center;
+            margin-top: 40px;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 182, 193, 0.1));
+            border-radius: 20px;
+            border: 2px solid #FFD700;
+            display: none;
+            animation: fadeIn 1s;
+            color: #333;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* RODAPÉ */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            color: #999;
+            font-size: 0.9em;
+            border-top: 1px solid rgba(255, 23, 68, 0.2);
+        }
+
+        /* MODAL PARA FOTOS */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            border: 3px solid #FF1744;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2em;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Legenda do modal */
+        .modal-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            max-width: 80%;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .love-letter-container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .answer-btn {
+                padding: 15px 30px;
+                min-width: 150px;
+                font-size: 1.1em;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .question-text {
+                font-size: 1.4em;
+            }
+        }
+
+        /* DECORAÇÃO EXTRA */
+        .heart-decoration {
+            position: absolute;
+            font-size: 20px;
+            opacity: 0.6;
+            z-index: 0;
+            animation: floatHeart 15s infinite linear;
+            color: #FF1744;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            90% {
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- FUNDO COM PARTÍCULAS -->
+    <div class="particles-background" id="particles"></div>
+
+    <!-- CORAÇÕES DECORATIVOS -->
+    <div id="heartsDecoration"></div>
+
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="love-letter-container">
+
+        <!-- ENVELOPE ANIMADO -->
+        <div class="envelope">
+            <div class="envelope-icon">💌</div>
+            <h1>Mensagem especial</h1>
+        </div>
+
+        <!-- MENSAGEM DE ABERTURA -->
+         <div class="opening-message">
+    <h2 style="text-align:center; font-size: 2em; margin-bottom: 10px;">
+        💖 Amanda ❤️ Eduardo
+    </h2>
+
+    <p style="text-align:center; margin-bottom: 20px;">
+        Desde 09/02/2026...
+    </p>
+
+    <div id="loveCounter" style="text-align:center; font-size: 1.2em; line-height:1.6;">
+        Carregando tempo juntos... ⏳
+    </div>
+</div>
+
+        <!-- SEÇÃO 1: NOSSA HISTÓRIA -->
+        <div class="content-section">
+            <div class="section-title">
+                <span>📖</span> Nossa Jornada
+            </div>
+            <div id="ourStory">
+                <p><strong>Antes de te conhecer</strong>, eu já tinha te visto treinando por lá com seu pai. Ali eu
+                    olhei
+                    pra mim e pensei: "Incrível!" Porém, por medo de dar esse primeiro passo, eu nunca tentei puxar
+                    assunto.
+                </p>
+
+                <p>Lembro como se fosse ontem quando nos conhecemos na academia. Eu estava cabisbaixo na época da nossa
+                    primeira interação por problemas pessoais. Meu mundo estava cinza e, dificilmente quando estava
+                    sozinho,
+                    tinha muitos motivos pra sorrir.</p>
+
+                <p>Mas aí você cutucou, eu me assustei e no dia <strong>09/10/2025</strong> você me perguntou se podia
+                    revezar. Eu disse rapidamente que sim e me afastei, pensando comigo mesmo: "Vou tentar puxar
+                    assunto!"
+                </p>
+
+                <p>Começamos a conversar e a conversa fluía intensamente de forma leve e descontraída. Ali eu percebi
+                    quão
+                    tranquilo era conversar com você (bem diferente do que eu pensava kkkkkk).</p>
+
+                <p>Os dias passaram até chegar em um próximo treino na terça-feira, dia <strong>14/10/2025</strong>,
+                    onde
+                    fui te cumprimentar e voltei a treinar perna lá na parte de cima com o Guilherme.</p>
+
+                <p>E você saiu de lá do seu hack para vir conversar comigo que estava fazendo stiff do outro lado. Ali
+                    eu
+                    suspeitei que o desejo talvez não fosse unilateral, porém eu gosto de trabalhar com a certeza para
+                    não
+                    imaginar nada de errado.</p>
+
+                <p>Nesse sentido, quando eu passei por você pra pegar mais peso, você me fez uma pergunta que me fez
+                    abrir a
+                    mente: <em>"Você gosta de açaí?"</em> Ali eu congelei e pensei rapidamente na melhor resposta
+                    possível,
+                    porque eu sinceramente não gosto de açaí e a sua pergunta quase que me saiu como um convite.</p>
+
+                <p>Então eu disse: <strong>"Olha, se você me chamar pra tomar um sorvete, eu aceito!"</strong> E depois
+                    me
+                    retirei e fui colocar mais peso. Fiquei me perguntando com o Guilherme: "Será que é isso mesmo o que
+                    eu
+                    estou pensando?" E ele indagou: "Talvez seja, apenas tente!"</p>
+
+                <p>Então eu cancelei o meu compromisso de comer na casa dele kkkkkkk e resolvi te chamar pra tomar um
+                    sorvete depois do treino.</p>
+
+                <p>E quando eu terminei o treino, você sumiu. Ali eu quase me desesperei por ter perdido essa
+                    oportunidade,
+                    mas você apareceu na minha frente logo depois e fiz o convite. Você aceitou e fomos para a
+                    sorveteria
+                    Berry!</p>
+
+                <p>Lá nos conhecemos melhor, conversamos sobre nossos heróis da Marvel kkkkkk entre outros assuntos, até
+                    chegar o momento onde eu tinha que sair por conta da faculdade. E nesse momento que trocamos
+                    contato.
+                </p>
+
+                <p>Depois disso, meu dia começou a ficar mais colorido. Estava acordando e dormindo com suas mensagens
+                    fofas
+                    e acolhedoras. E as nossas conversas se escalaram tão rápido e de uma forma tão natural, que eu
+                    fiquei
+                    surpreso quando você me chamou pra pizzada de Arq e Urb na outra semana.</p>
+
+                <p>Foi onde já conheci meu sogrão kkkkkkk. Mas pra mim, a virada de chave e vi que aquilo era real foi
+                    no
+                    dia <strong>20/10/2025</strong>, onde fomos assistir aquele filme Tron kkkkkkk (que sabemos como
+                    discorreu).</p>
+
+                <p>Nesse dia eu achei maravilhoso sentir seu carinho, seu amor e seu desejo por mim. E na pizzada, onde
+                    você
+                    me levou pra conhecer seu pai e suas amigas de turma, e basicamente anunciar publicamente...</p>
+
+                <p>Quando chegou a sua vez de se apresentar lá, e você foi questionada sobre seu estado civil, você
+                    levantou
+                    o braço e disse: <strong class="highlight-special">"Sou compromissada!"</strong></p>
+
+                <p>Ali eu vi que o que estávamos vivendo era <strong>intenso e verdadeiro</strong>.</p>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 2: MOMENTOS ESPECIAIS -->
+        <div class="content-section">
+            <div class="section-title">
+                <span>✨</span> Momentos Que Guardo no Coração
+            </div>
+            <div class="timeline" id="memoriesTimeline">
+                <!-- Momentos serão carregados aqui -->
+            </div>
+        </div>
+
+        <!-- SEÇÃO 3: GALERIA -->
+        <div class="content-section">
+            <div class="section-title">
+                <span>🖼️</span> Nossas Memórias
+            </div>
+            <p style="margin-bottom: 15px; color: #333;">
+                Cada imagem representa um momento especial que vivemos juntos:
+            </p>
+            <div class="gallery" id="photoGallery">
+                <!-- Fotos serão carregadas aqui -->
+            </div>
+        </div>
+
+        <!-- SEÇÃO 4: MEUS SENTIMENTOS -->
+        <div class="content-section">
+            <div class="section-title">
+                <span>💖</span> O Que Sinto Por Você
+            </div>
+            <p id="myFeelings">
+                Amanda, desde que você entrou na minha vida, tudo mudou. Você trouxe luz, alegria e um significado
+                especial para cada dia.
+                Sinto uma conexão com você que nunca senti com ninguém - é algo profundo, verdadeiro e único.
+                Cada momento ao seu lado é especial, cada risada sua é música para meus ouvidos, e cada olhar seu aquece
+                meu coração.
+                Você me faz querer ser uma pessoa melhor, me dá força nos dias difíceis e alegria nos dias bons.
+                O que sinto por você vai além das palavras - é um sentimento que transborda do coração.
+            </p>
+        </div>
+
+        <!-- PERGUNTA PRINCIPAL -->
+        <div class="question-area">
+            <div class="question-text">
+                💕 Depois de tudo o que vivemos e compartilhamos...<br>
+                <strong>💖 Desde esse dia somos nós 💖</strong> 🌹
+            </div>
+        </div>
+
+        <!-- RESPOSTA -->
+        <div class="response" id="responseArea">
+            <!-- Será preenchido quando disser SIM -->
+        </div>
+
+        <!-- RODAPÉ -->
+        <div class="footer">
+            <p>Feito com ❤️ especialmente para você</p>
+            <p>💻 Esta mensagem foi criada especialmente para você e por você</p>
+            <p style="margin-top: 10px; font-size: 0.8em; color: #888;">
+                P.S.: Esta pagina já estava salva comigo, agora está com você 💾
+            </p>
+        </div>
+    </div>
+
+    <!-- MODAL PARA FOTOS -->
+    <div class="modal" id="photoModal">
+        <div class="close-modal" onclick="closeModal()">×</div>
+        <img class="modal-content" id="modalImage" src="" alt="Foto ampliada">
+        <div class="modal-caption" id="modalCaption"></div>
+    </div>
+
+    <script>
+        // ==============================================
+        // 🎯 CONFIGURAÇÃO PERSONALIZADA
+        // ==============================================
+
+        const CONFIG = {
+            // 👤 NOME DA PESSOA
+            nome: "Amanda",
+
+            // 📖 NOSSA HISTÓRIA
+            historia: `Desde o momento em que nossos caminhos se cruzaram, minha vida ganhou um novo significado...`,
+
+            // 📸 NOSSAS FOTOS REAIS
+            // 📸 NOSSAS FOTOS REAIS - SUBSTITUA COM SEUS ARQUIVOS
+            fotos: [
+                {
+                    arquivo: "fotos/20251024_201234.jpg",
+                    descricao: "Nosso primeiro encontro especial na pizzada 24/10/25"
+                },
+                {
+                    arquivo: "fotos/20251103_170740.jpg",
+                    descricao: "Um momento inesquecível juntos no shooping 03/11/25"
+                },
+                {
+                    arquivo: "fotos/20260207_161607.jpg",
+                    descricao: "Meu dia preferido no cinema 07/02/26"
+                },
+                {
+                    arquivo: "fotos/20260207_161610.jpg",
+                    descricao: "Meu plano A kkkkk 07/02/26"
+                },
+                {
+                    arquivo: "fotos/IMG-20251209-WA0028.jpg",
+                    descricao: "Noite mágica juntos 09/05/26"
+                },
+                {
+                    arquivo: "fotos/IMG-20251209-WA0029.jpg",
+                    descricao: "Nosso natal 09/05/26"
+                },
+                {
+                    arquivo: "fotos/IMG-20251230-WA0015.jpg",
+                    descricao: " Pré ano novo 30/12/25"
+                },
+                {
+                    arquivo: "fotos/IMG-20251230-WA0016.jpg",
+                    descricao: "Momento bobeira 30/12/25"
+                },
+                {
+                    arquivo: "fotos/IMG-20260113-WA0019.jpg",
+                    descricao: "Pulando com vc 13/01/26"
+                },
+                {
+                    arquivo: "fotos/IMG-20260113-WA0023.jpg",
+                    descricao: "Foi muito divirtido 13/01/26"
+                },
+                {
+                    arquivo: "fotos/IMG-20260206-WA0057.jpg",
+                    descricao: "Nosso primeiro treino junto do ano 26/01/26"
+                }
+            ],
+
+            // 📅 MOMENTOS ESPECIAIS
+            momentos: [
+                {
+                    data: "09/10/2025",
+                    texto: "Nosso primeiro encontro na academia - quando tudo começou"
+                },
+                {
+                    data: "14/10/2025",
+                    texto: "Nosso primeiro sorvete na Berry - quando nos conhecemos de verdade"
+                },
+                {
+                    data: "20/10/2025",
+                    texto: "Noite do cinema - quando senti que isso era algo real"
+                },
+                {
+                    data: "24/10/2025",
+                    texto: "Pizzada da faculdade - quando você me apresentou ao mundo"
+                }
+            ],
+
+            // 💖 SEUS SENTIMENTOS
+            sentimentos: `Amanda, você transformou minha vida de uma maneira que nem consigo explicar. Quando estou com você, tudo faz sentido. Sua risada é a música mais bonita que já ouvi, seu sorriso ilumina meus dias mais cinzentos, e sua presença me faz uma pessoa melhor. Sinto algo por você que nunca senti por ninguém.`,
+
+            // 💌 MENSAGEM FINAL
+            mensagemFinal: `Amanda, obrigado por aceitar viver essa história comigo. Prometo fazer de cada dia uma aventura, te fazer rir sempre, te apoiar em tudo e te amar mais a cada dia que passar. Vamos construir algo lindo juntos! Te amo! 💕`,
+
+            // 🎵 MÚSICA (opcional)
+            musica: "", // "nossa_musica.mp3" se quiser
+
+            // 🎨 CORES PRINCIPAIS
+            cores: {
+                primaria: "#FF1744",
+                secundaria: "#C2185B",
+                destaque: "#FFD700"
+            }
+        };
+
+        // ==============================================
+        // 🛠️ SISTEMA PRINCIPAL
+        // ==============================================
+
+        // Inicialização da página
+        // ==============================================
+// ⏱️ CONTADOR DE TEMPO DE NAMORO
+// ==============================================
+
+function updateLoveCounter() {
+    const startDate = new Date(2026, 1, 9);
+    const now = new Date();
+
+    let diff = now - startDate;
+
+    const seconds = Math.floor(diff / 1000) % 60;
+    const minutes = Math.floor(diff / (1000 * 60)) % 60;
+    const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+
+    const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    const years = Math.floor(totalDays / 365);
+    const months = Math.floor((totalDays % 365) / 30);
+    const days = (totalDays % 365) % 30;
+
+    const timeText = `
+        💖 Estamos juntos há:<br>
+        ${years} ano(s), ${months} mês(es), ${days} dia(s)<br>
+        ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
+    `;
+
+    const el = document.getElementById('loveCounter');
+    if (el) el.innerHTML = timeText;
+}
+
+setInterval(updateLoveCounter, 1000);
+updateLoveCounter();
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("=== INICIANDO PEDIDO ESPECIAL ===");
+
+            // 1. Preencher nome
+
+            // 2. Preencher momentos especiais
+            renderMemories();
+
+            // 3. Preencher galeria de fotos
+            renderGallery();
+
+            // 4. Preencher sentimentos (já está no HTML, mas mantemos a referência)
+            document.getElementById('myFeelings').textContent = CONFIG.sentimentos;
+
+            // 5. Criar efeitos visuais
+            createParticles();
+            createFloatingHearts();
+
+            // 6. Aplicar cores personalizadas
+            applyCustomColors();
+
+            // 7. Iniciar música (se configurada)
+            if (CONFIG.musica) {
+                setupMusicPlayer();
+            }
+
+            console.log("=== PÁGINA INICIALIZADA COM SUCESSO ===");
+        });
+
+        // Renderizar momentos especiais
+        function renderMemories() {
+            const timeline = document.getElementById('memoriesTimeline');
+            timeline.innerHTML = '';
+
+            CONFIG.momentos.forEach((momento, index) => {
+                const memoryDiv = document.createElement('div');
+                memoryDiv.className = 'memory';
+                memoryDiv.style.animationDelay = `${index * 0.2}s`;
+                memoryDiv.innerHTML = `
+                    <div class="memory-date">${momento.data}</div>
+                    <div class="memory-text">${momento.texto}</div>
+                `;
+                timeline.appendChild(memoryDiv);
+            });
+        }
+
+        // Renderizar galeria COM FOTOS REAIS
+        function renderGallery() {
+            const gallery = document.getElementById('photoGallery');
+            if (!gallery) {
+                console.error("Elemento 'photoGallery' não encontrado!");
+                return;
+            }
+
+            gallery.innerHTML = '';
+
+            // Verificar se CONFIG.fotos existe
+            if (!CONFIG.fotos || !Array.isArray(CONFIG.fotos)) {
+                console.error("CONFIG.fotos não encontrado!");
+                gallery.innerHTML = '<div style="color: #FF1744; padding: 20px; text-align: center;">Erro ao carregar fotos</div>';
+                return;
+            }
+
+            CONFIG.fotos.forEach((foto, index) => {
+                const photoDiv = document.createElement('div');
+                photoDiv.className = 'photo-item';
+                photoDiv.style.animationDelay = `${index * 0.1}s`;
+                photoDiv.title = foto.descricao;
+
+                // Criar elemento de imagem
+                const img = document.createElement('img');
+                img.src = foto.arquivo;
+                img.alt = foto.descricao;
+                img.loading = 'lazy';
+
+                // Estilos da imagem
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '10px';
+                img.style.transition = 'transform 0.5s';
+
+                // Efeito de carregamento
+                photoDiv.classList.add('loading');
+
+                img.onload = function () {
+                    console.log(`✓ Foto ${index + 1} carregada: ${foto.arquivo}`);
+                    photoDiv.classList.remove('loading');
+                };
+
+                img.onerror = function () {
+                    console.error(`✗ Erro ao carregar foto ${index + 1}: ${foto.arquivo}`);
+                    photoDiv.classList.remove('loading');
+
+                    // Fallback: mostrar placeholder
+                    photoDiv.innerHTML = `
+                        <div style="font-size: 2em; color: #FF1744; margin-bottom: 10px;">📷</div>
+                        <div style="font-size: 0.9em; color: #666; text-align: center; padding: 0 10px;">
+                            ${foto.descricao}
+                        </div>
+                    `;
+                    photoDiv.style.background = 'rgba(255, 23, 68, 0.1)';
+                    photoDiv.style.display = 'flex';
+                    photoDiv.style.flexDirection = 'column';
+                    photoDiv.style.alignItems = 'center';
+                    photoDiv.style.justifyContent = 'center';
+                };
+
+                photoDiv.appendChild(img);
+
+                // Configurar clique para abrir modal
+                photoDiv.onclick = function () {
+                    openPhotoModal(foto.arquivo, foto.descricao);
+                };
+
+                gallery.appendChild(photoDiv);
+            });
+        }
+
+        // Criar partículas no fundo
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 100;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+
+                const size = Math.random() * 5 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+
+                particle.style.animation = `floatParticle ${duration}s infinite ${delay}s linear`;
+
+                container.appendChild(particle);
+            }
+
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floatParticle {
+                    0% { transform: translateY(0) translateX(0); }
+                    25% { transform: translateY(-20px) translateX(10px); }
+                    50% { transform: translateY(-40px) translateX(0); }
+                    75% { transform: translateY(-20px) translateX(-10px); }
+                    100% { transform: translateY(0) translateX(0); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Criar corações flutuantes
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsDecoration');
+            const hearts = ['❤️', '💖', '💕', '💗', '💓', '💞'];
+            const heartCount = 30;
+
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-decoration';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.fontSize = `${Math.random() * 15 + 10}px`;
+                heart.style.animationDelay = `${Math.random() * 15}s`;
+                heart.style.animationDuration = `${Math.random() * 20 + 15}s`;
+                container.appendChild(heart);
+            }
+        }
+
+        // Aplicar cores personalizadas
+        function applyCustomColors() {
+            const style = document.createElement('style');
+            style.textContent = `
+                :root {
+                    --color-primary: ${CONFIG.cores.primaria};
+                    --color-secondary: ${CONFIG.cores.secundaria};
+                    --color-accent: ${CONFIG.cores.destaque};
+                }
+                
+                .btn-yes {
+                    background: linear-gradient(45deg, 
+                        ${CONFIG.cores.primaria}, 
+                        ${CONFIG.cores.secundaria});
+                }
+                
+                .section-title {
+                    color: ${CONFIG.cores.secundaria};
+                }
+                
+                .memory-date {
+                    color: ${CONFIG.cores.secundaria};
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Configurar player de música
+        function setupMusicPlayer() {
+            const audio = document.createElement('audio');
+            audio.id = 'backgroundMusic';
+            audio.loop = true;
+            audio.volume = 0.3;
+
+            const source = document.createElement('source');
+            source.src = CONFIG.musica;
+            source.type = 'audio/mpeg';
+
+            audio.appendChild(source);
+            document.body.appendChild(audio);
+
+            window.playLoveSong = function () {
+                const music = document.getElementById('backgroundMusic');
+                if (music) {
+                    music.play().catch(e => {
+                        console.log("Música não pôde ser reproduzida:", e);
+                    });
+                }
+            };
+        }
+
+        // ==============================================
+        // 🖼️ SISTEMA DE FOTOS CORRIGIDO
+        // ==============================================
+
+        // Abrir modal de foto - VERSÃO CORRIGIDA
+        function openPhotoModal(photoPath, descricao) {
+            console.log("Abrindo modal:", photoPath);
+
+            const modal = document.getElementById('photoModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+
+            if (!modal || !modalImg) {
+                console.error("Modal não encontrado!");
+                return;
+            }
+
+            // Atualizar legenda
+            if (modalCaption) {
+                modalCaption.textContent = descricao;
+            }
+
+            // Mostrar loading
+            modalImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%230f0c29"/><text x="200" y="200" font-size="30" text-anchor="middle" dy=".3em" fill="white">Carregando...</text></svg>';
+            modal.style.display = 'flex';
+
+            // Tentar carregar a foto
+            const tempImg = new Image();
+
+            tempImg.onload = function () {
+                console.log("Foto carregada com sucesso!");
+                modalImg.src = photoPath;
+                modalImg.alt = descricao;
+            };
+
+            tempImg.onerror = function () {
+                console.error("Erro ao carregar foto, tentando alternativas...");
+
+                // Tentar caminhos alternativos
+                const alternatives = [
+                    photoPath,
+                    `./${photoPath}`,
+                    photoPath.replace('fotos/', './fotos/'),
+                    photoPath.replace('.jpg', '.jpeg'),
+                    photoPath.replace('.jpeg', '.jpg'),
+                    photoPath.replace('.jpg', '.png')
+                ];
+
+                let currentIndex = 0;
+
+                function tryNextAlternative() {
+                    if (currentIndex >= alternatives.length) {
+                        // Todas as alternativas falharam
+                        modalImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%23FF1744"/><text x="200" y="180" font-size="60" text-anchor="middle" fill="white">📷</text><text x="200" y="250" font-size="20" text-anchor="middle" fill="white">Foto não encontrada</text></svg>';
+                        return;
+                    }
+
+                    const altImg = new Image();
+                    altImg.onload = function () {
+                        console.log("Foto encontrada em alternativa:", alternatives[currentIndex]);
+                        modalImg.src = alternatives[currentIndex];
+                    };
+                    altImg.onerror = function () {
+                        currentIndex++;
+                        tryNextAlternative();
+                    };
+                    altImg.src = alternatives[currentIndex];
+                }
+
+                tryNextAlternative();
+            };
+
+            tempImg.src = photoPath;
+        }
+
+        // Fechar modal
+        function closeModal() {
+            const modal = document.getElementById('photoModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // ==============================================
+        // 💖 SISTEMA DE RESPOSTA
+        // ==============================================
+
+        // FUNÇÃO QUANDO CLICA EM SIM
+        function showResponse(isYes) {
+            if (!isYes) return;
+
+            const responseArea = document.getElementById('responseArea');
+            const buttons = document.querySelector('.buttons-container');
+            const questionText = document.querySelector('.question-text');
+
+            // Preencher resposta
+            responseArea.innerHTML = `
+                <div style="font-size: 4em; margin-bottom: 20px;">🎉💖🎊</div>
+                <h2 style="color: #C2185B; margin-bottom: 20px;">SIM! ACEITO COM MUITO AMOR!</h2>
+                <p style="font-size: 1.3em; line-height: 1.6; margin-bottom: 30px; color: #333;">
+                    ${CONFIG.mensagemFinal}
+                </p>
+                <div style="background: rgba(255, 215, 0, 0.15); padding: 20px; border-radius: 10px; margin-top: 30px; border: 2px solid #FFD700;">
+                    <p style="color: #C2185B; margin-bottom: 10px; font-weight: bold;">
+                        📅 Data do início do nosso namoro oficialmente:
+                    </p>
+                    <p style="font-size: 1.5em; font-weight: bold; color: #333;">
+                        ${new Date().toLocaleDateString('pt-BR', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })}
+                    </p>
+                </div>
+            `;
+
+            // Mostrar resposta
+            responseArea.style.display = 'block';
+            buttons.style.display = 'none';
+
+            questionText.innerHTML = '🎉 <strong>AGORA SOMOS OFICIALMENTE NAMORADOS!</strong> 🎉';
+            questionText.style.color = '#C2185B';
+            questionText.style.textShadow = '0 0 10px #FF1744';
+
+            // Efeitos especiais
+            createCelebration();
+
+            // Tocar música se configurada
+            if (CONFIG.musica && window.playLoveSong) {
+                window.playLoveSong();
+            }
+
+            // Rolar para a resposta
+            setTimeout(() => {
+                responseArea.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }, 500);
+        }
+
+        // FUNÇÃO QUANDO CLICA EM NÃO
+        function handleNoButton() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.querySelector('.btn-yes');
+
+            const responses = [
+                "Tem certeza? 😢",
+                "Pensa bem! 💕",
+                "Dá outra chance... 🥺",
+                "Vamos conversar? 🤔",
+                "Insisto! 😊",
+                "Por favor? ❤️",
+                "Eu te amo tanto! 💖",
+                "Diz que sim! 🥰"
+            ];
+
+            // Mover botão
+            const container = document.querySelector('.question-area');
+            const maxX = container.clientWidth - noBtn.clientWidth - 40;
+            const maxY = 50;
+
+            noBtn.style.position = 'relative';
+            noBtn.style.left = `${Math.random() * maxX}px`;
+            noBtn.style.top = `${Math.random() * maxY - maxY / 2}px`;
+            noBtn.textContent = responses[Math.floor(Math.random() * responses.length)];
+
+            // Destacar botão SIM
+            yesBtn.style.transform = 'scale(1.15)';
+            yesBtn.style.boxShadow = '0 0 30px rgba(255, 23, 68, 0.8)';
+
+            setTimeout(() => {
+                yesBtn.style.transform = 'scale(1.1)';
+                yesBtn.style.boxShadow = '0 15px 35px rgba(255, 23, 68, 0.6)';
+            }, 300);
+
+            // Efeito de coração partido
+            const brokenHeart = document.createElement('div');
+            brokenHeart.textContent = '💔';
+            brokenHeart.style.position = 'absolute';
+            brokenHeart.style.fontSize = '30px';
+            brokenHeart.style.left = `${Math.random() * 100}%`;
+            brokenHeart.style.top = `${Math.random() * 100}%`;
+            brokenHeart.style.opacity = '0.7';
+            brokenHeart.style.animation = 'fadeOut 2s forwards';
+            brokenHeart.style.pointerEvents = 'none';
+            document.querySelector('.question-area').appendChild(brokenHeart);
+
+            setTimeout(() => {
+                brokenHeart.remove();
+            }, 2000);
+        }
+
+        // Criar efeitos de celebração
+        function createCelebration() {
+            createConfetti();
+
+            document.body.style.animation = 'celebratePulse 0.5s 3';
+            setTimeout(() => {
+                document.body.style.animation = '';
+            }, 1500);
+        }
+
+        // Criar confetes
+        function createConfetti() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9999;
+            `;
+            document.body.appendChild(confettiContainer);
+
+            const colors = [
+                CONFIG.cores.primaria,
+                CONFIG.cores.secundaria,
+                CONFIG.cores.destaque,
+                '#ffffff',
+                '#FFB6C1'
+            ];
+
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+                if (Math.random() > 0.5) {
+                    confetti.style.borderRadius = '50%';
+                }
+
+                confetti.style.width = `${Math.random() * 15 + 5}px`;
+                confetti.style.height = `${Math.random() * 15 + 5}px`;
+                confetti.style.position = 'absolute';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = '-20px';
+
+                confettiContainer.appendChild(confetti);
+
+                const animation = confetti.animate([
+                    {
+                        transform: `translate(0, 0) rotate(0deg)`,
+                        opacity: 1
+                    },
+                    {
+                        transform: `translate(${Math.random() * 200 - 100}px, ${window.innerHeight + 100}px) rotate(${Math.random() * 720}deg)`,
+                        opacity: 0
+                    }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 0.2)'
+                });
+
+                animation.onfinish = () => confetti.remove();
+            }
+
+            setTimeout(() => {
+                confettiContainer.remove();
+            }, 5000);
+        }
+
+        // Adicionar keyframes para animações
+        const extraStyles = document.createElement('style');
+        extraStyles.textContent = `
+            @keyframes celebratePulse {
+                0%, 100% { filter: brightness(1); }
+                50% { filter: brightness(1.2); }
+            }
+            
+            @keyframes fadeOut {
+                from { opacity: 0.7; transform: scale(1); }
+                to { opacity: 0; transform: scale(0); }
+            }
+        `;
+        document.head.appendChild(extraStyles);
+
+        // Atalho Enter para SIM
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                showResponse(true);
+            }
+        });
+    </script>
+</body>
+</html>
