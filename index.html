@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💌 Apenas pra você</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* RESET E CONFIGURAÇÕES GERAIS */
         * {
@@ -16,7 +17,7 @@
         body {
             background: linear-gradient(135deg, #FFF0F5, #FFB6C1, #FF69B4);
             color: #333;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
@@ -39,168 +40,234 @@
             border-radius: 50%;
         }
 
-        /* CONTAINER PRINCIPAL - ESTILO DE CARTA */
-        .love-letter-container {
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 3px solid #FF1744;
-            box-shadow:
-                0 0 50px rgba(255, 23, 68, 0.3),
-                0 0 100px rgba(255, 107, 148, 0.2);
-            position: relative;
-            z-index: 1;
+        /* PADRÃO DE CORAÇÕES NO FUNDO */
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.05;
+            font-size: 100px;
+            line-height: 1;
+            color: #FF1744;
+            overflow: hidden;
+            pointer-events: none;
         }
 
-        /* ENVELOPE ANIMADO NO TOPO */
-        .envelope {
+        /* CONTAINER PRINCIPAL - ESTILO DE CARTA */
+        .love-letter-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            border: 3px solid #FF1744;
+            box-shadow:
+                0 0 80px rgba(255, 23, 68, 0.25),
+                0 20px 60px rgba(255, 107, 148, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========== CABEÇALHO NOVO ========== */
+        .header-section {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            padding: 30px 0;
+            border-bottom: 2px solid rgba(255, 23, 68, 0.2);
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .header-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: inline-block;
             animation: float 3s ease-in-out infinite;
         }
 
         @keyframes float {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
 
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            background: linear-gradient(45deg, #FF1744, #C2185B, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 15px 0;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(255, 23, 68, 0.1);
+        }
+
+        .header-subtitle {
+            font-size: 1.1em;
+            color: #C2185B;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .love-counter-box {
+            background: linear-gradient(135deg, rgba(255, 23, 68, 0.08), rgba(255, 182, 193, 0.1));
+            border: 2px solid #FF1744;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 25px;
+            display: inline-block;
+            min-width: 400px;
+        }
+
+        .love-counter-box h3 {
+            color: #C2185B;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        #loveCounter {
+            font-size: 1.3em;
+            color: #333;
+            line-height: 1.8;
+            font-weight: 600;
+        }
+
+        /* ========== SEÇÕES DE CONTEÚDO ========== */
+        .content-section {
+            margin: 40px 0;
+            padding: 35px;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.08), rgba(255, 240, 245, 0.1));
+            border-radius: 20px;
+            border-left: 5px solid #FF1744;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 20px rgba(255, 23, 68, 0.08);
+            animation: fadeInUp 0.8s ease-out both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .content-section:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        .content-section:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+
+        .content-section:hover {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 240, 245, 0.15));
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.15);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #C2185B;
+            font-size: 2em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            font-size: 1.4em;
+            display: inline-block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
             50% {
                 transform: translateY(-10px);
             }
         }
 
-        .envelope-icon {
-            font-size: 80px;
-            display: block;
-            margin-bottom: 20px;
-            text-shadow: 0 0 20px #FF1744;
-        }
-
-        /* TÍTULO PRINCIPAL */
-        h1 {
-            text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 30px;
-            background: linear-gradient(45deg, #FF1744, #FFD700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        h1::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #FF1744, transparent);
-        }
-
-        /* MENSAGEM DE ABERTURA */
-        .opening-message {
-            text-align: center;
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: linear-gradient(135deg, rgba(255, 23, 68, 0.08), rgba(255, 182, 193, 0.1));
-            border-radius: 10px;
-            border-left: 4px solid #FF1744;
+        .section-content {
             color: #333;
+            line-height: 1.9;
+            font-size: 1.05em;
         }
 
-        /* SEÇÃO DE CONTEÚDO */
-        .content-section {
-            margin: 30px 0;
-            padding: 25px;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.1), rgba(255, 255, 240, 0.1));
-            border-radius: 15px;
-            transition: all 0.3s;
-            color: #333;
+        .section-content p {
+            margin-bottom: 18px;
+            text-align: justify;
         }
 
-        .content-section:hover {
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 255, 240, 0.15));
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 23, 68, 0.15);
+        .section-content strong {
+            color: #FF1744;
+            font-weight: 700;
         }
 
-        .section-title {
-            color: #C2185B;
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-        }
-
-        .section-title i {
-            font-size: 1.2em;
-        }
-
-        /* TIMELINE DOS MOMENTOS */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            margin: 20px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, #FF1744, #FFD700);
-        }
-
-        .memory {
-            position: relative;
-            margin-bottom: 25px;
-            padding: 15px;
-            background: rgba(255, 182, 193, 0.1);
-            border-radius: 8px;
-            border-left: 3px solid #FF1744;
-            color: #333;
-        }
-
-        .memory::before {
-            content: '💝';
-            position: absolute;
-            left: -40px;
-            top: 15px;
-            background: white;
-            padding: 5px;
-            border-radius: 50%;
-            font-size: 0.8em;
-        }
-
-        .memory-date {
-            color: #C2185B;
-            font-weight: bold;
-            font-size: 0.9em;
-            margin-bottom: 5px;
-        }
-
-        .memory-text {
-            font-size: 1.1em;
-            color: #333;
-        }
-
-        /* GALERIA DE FOTOS */
+        /* ========== GALERIA DE FOTOS ========== */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             gap: 15px;
             margin-top: 20px;
         }
@@ -208,21 +275,22 @@
         .photo-item {
             aspect-ratio: 1;
             background: rgba(255, 182, 193, 0.2);
-            border-radius: 10px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5em;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             overflow: hidden;
             position: relative;
             border: 2px solid rgba(255, 23, 68, 0.2);
+            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.1);
         }
 
         .photo-item:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 23, 68, 0.4);
+            transform: scale(1.12) rotate(2deg);
+            box-shadow: 0 12px 30px rgba(255, 23, 68, 0.3);
             border-color: #FF1744;
         }
 
@@ -230,9 +298,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.5s;
         }
 
-        /* Efeito de loading para fotos */
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
         .photo-item.loading {
             background: linear-gradient(90deg,
                     rgba(255, 182, 193, 0.2) 25%,
@@ -246,147 +318,43 @@
             0% {
                 background-position: 200% 0;
             }
-
             100% {
                 background-position: -200% 0;
             }
         }
 
-        /* ÁREA DA PERGUNTA */
-        .question-area {
-            text-align: center;
-            margin: 50px 0;
-            padding: 30px;
-            background: linear-gradient(135deg,
-                    rgba(255, 23, 68, 0.1),
-                    rgba(255, 182, 193, 0.15));
-            border-radius: 15px;
-            border: 2px solid #FF1744;
-        }
-
-        .question-text {
-            font-size: 1.8em;
-            margin-bottom: 30px;
-            color: #333;
-            text-shadow: 0 0 10px rgba(255, 182, 193, 0.3);
-        }
-
-        .question-text strong {
-            color: #C2185B;
-        }
-
-        /* BOTÕES */
-        .buttons-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .answer-btn {
-            padding: 20px 50px;
-            font-size: 1.3em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-            min-width: 200px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .answer-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                    transparent,
-                    rgba(255, 255, 255, 0.3),
-                    transparent);
-            transition: 0.5s;
-        }
-
-        .answer-btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-yes {
-            background: linear-gradient(45deg, #FF1744, #C2185B);
-            color: white;
-            box-shadow: 0 10px 25px rgba(255, 23, 68, 0.4);
-        }
-
-        .btn-yes:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 35px rgba(255, 23, 68, 0.6);
-        }
-
-        .btn-no {
-            background: linear-gradient(45deg, #FFB6C1, #FFB6C1);
-            color: #C2185B;
-            border: 2px solid #FF1744;
-        }
-
-        .btn-no:hover {
-            animation: shake 0.5s;
-        }
-
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-10px);
-            }
-
-            75% {
-                transform: translateX(10px);
-            }
-        }
-
-        /* RESPOSTA */
-        .response {
-            text-align: center;
-            margin-top: 40px;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 182, 193, 0.1));
-            border-radius: 20px;
-            border: 2px solid #FFD700;
-            display: none;
-            animation: fadeIn 1s;
-            color: #333;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        /* RODAPÉ */
+        /* ========== RODAPÉ ========== */
         .footer {
             text-align: center;
             margin-top: 50px;
-            padding-top: 20px;
+            padding-top: 30px;
             color: #999;
-            font-size: 0.9em;
-            border-top: 1px solid rgba(255, 23, 68, 0.2);
+            font-size: 0.95em;
+            border-top: 2px solid rgba(255, 23, 68, 0.2);
         }
 
-        /* MODAL PARA FOTOS */
+        .footer p {
+            margin: 10px 0;
+            font-size: 0.9em;
+        }
+
+        .footer-emoji {
+            display: inline-block;
+            font-size: 1.3em;
+            margin: 0 5px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* ========== MODAL PARA FOTOS ========== */
         .modal {
             display: none;
             position: fixed;
@@ -394,17 +362,40 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            animation: fadeInModal 0.3s;
+        }
+
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         .modal-content {
             max-width: 90%;
             max-height: 90%;
-            border-radius: 10px;
-            border: 3px solid #FF1744;
+            border-radius: 15px;
+            border: 4px solid #FF1744;
+            box-shadow: 0 0 60px rgba(255, 23, 68, 0.5);
+            animation: slideInModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideInModal {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
         }
 
         .close-modal {
@@ -412,62 +403,73 @@
             top: 20px;
             right: 20px;
             color: white;
-            font-size: 2em;
+            font-size: 2.5em;
             cursor: pointer;
-            background: rgba(0, 0, 0, 0.5);
-            width: 50px;
-            height: 50px;
+            background: rgba(255, 23, 68, 0.6);
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s;
+            border: 2px solid white;
         }
 
-        /* Legenda do modal */
+        .close-modal:hover {
+            background: rgba(255, 23, 68, 1);
+            transform: rotate(90deg) scale(1.1);
+        }
+
         .modal-caption {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
+            padding: 15px 25px;
+            border-radius: 25px;
             font-size: 1.1em;
             max-width: 80%;
             text-align: center;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            border: 2px solid #FF1744;
         }
 
-        /* RESPONSIVO */
+        /* ========== RESPONSIVO ========== */
         @media (max-width: 768px) {
             .love-letter-container {
-                margin: 20px;
+                margin: 15px;
                 padding: 20px;
             }
 
-            h1 {
-                font-size: 1.8em;
+            .header-title {
+                font-size: 2em;
             }
 
-            .answer-btn {
-                padding: 15px 30px;
-                min-width: 150px;
-                font-size: 1.1em;
+            .section-title {
+                font-size: 1.5em;
             }
 
-            .buttons-container {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
+            .love-counter-box {
+                min-width: auto;
+                width: 100%;
+                padding: 20px;
             }
 
-            .question-text {
-                font-size: 1.4em;
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 10px;
+            }
+
+            .content-section {
+                padding: 20px;
+                margin: 20px 0;
             }
         }
 
-        /* DECORAÇÃO EXTRA */
+        /* ========== DECORAÇÃO - CORAÇÕES FLUTUANTES ========== */
         .heart-decoration {
             position: absolute;
             font-size: 20px;
@@ -475,6 +477,7 @@
             z-index: 0;
             animation: floatHeart 15s infinite linear;
             color: #FF1744;
+            pointer-events: none;
         }
 
         @keyframes floatHeart {
@@ -482,20 +485,44 @@
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 0;
             }
-
             10% {
                 opacity: 0.7;
             }
-
             90% {
                 opacity: 0.7;
             }
-
             100% {
                 transform: translateY(-100px) rotate(360deg);
                 opacity: 0;
             }
         }
+
+        /* ========== EFEITO SHINE/BRILHO ========== */
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
     </style>
 </head>
 
@@ -504,125 +531,101 @@
     <!-- FUNDO COM PARTÍCULAS -->
     <div class="particles-background" id="particles"></div>
 
+    <!-- PADRÃO DE FUNDO -->
+    <div class="background-pattern" id="backgroundPattern"></div>
+
     <!-- CORAÇÕES DECORATIVOS -->
     <div id="heartsDecoration"></div>
 
     <!-- CONTAINER PRINCIPAL -->
-    <div class="love-letter-container">
+    <div class="love-letter-container shine-effect">
 
-        <!-- ENVELOPE ANIMADO -->
-        <div class="envelope">
-            <div class="envelope-icon">💌</div>
-            <h1>Mensagem especial</h1>
+        <!-- ========== NOVO CABEÇALHO ========== -->
+        <div class="header-section">
+            <div class="header-icon">💌</div>
+            <h1 class="header-title">Amanda & Eduardo</h1>
+            <p class="header-subtitle">Uma história de amor que começou no coração</p>
+            
+            <div class="love-counter-box">
+                <h3>💖 Tempo Juntos</h3>
+                <div id="loveCounter">Carregando tempo juntos... ⏳</div>
+            </div>
         </div>
-
-        <!-- MENSAGEM DE ABERTURA -->
-         <div class="opening-message">
-    <h2 style="text-align:center; font-size: 2em; margin-bottom: 10px;">
-        💖 Amanda ❤️ Eduardo
-    </h2>
-
-    <p style="text-align:center; margin-bottom: 20px;">
-        Desde 09/02/2026...
-    </p>
-
-    <div id="loveCounter" style="text-align:center; font-size: 1.2em; line-height:1.6;">
-        Carregando tempo juntos... ⏳
-    </div>
-</div>
 
         <!-- SEÇÃO 1: NOSSA HISTÓRIA -->
         <div class="content-section">
             <div class="section-title">
-                <span>📖</span> Nossa Jornada
+                <span>📖</span> Nossa História
             </div>
-            <div id="ourStory">
-                <p><strong>Antes de te conhecer</strong>, eu já tinha te visto treinando por lá com seu pai. Ali eu
-                    olhei
-                    pra mim e pensei: "Incrível!" Porém, por medo de dar esse primeiro passo, eu nunca tentei puxar
-                    assunto.
+            <div class="section-content">
+                <p>
+                    Eduardo e Amanda...
                 </p>
 
-                <p>Lembro como se fosse ontem quando nos conhecemos na academia. Eu estava cabisbaixo na época da nossa
-                    primeira interação por problemas pessoais. Meu mundo estava cinza e, dificilmente quando estava
-                    sozinho,
-                    tinha muitos motivos pra sorrir.</p>
-
-                <p>Mas aí você cutucou, eu me assustei e no dia <strong>09/10/2025</strong> você me perguntou se podia
-                    revezar. Eu disse rapidamente que sim e me afastei, pensando comigo mesmo: "Vou tentar puxar
-                    assunto!"
+                <p>
+                    Desde aquele primeiro encontro na academia, 
+                    soube que você era diferente.
                 </p>
 
-                <p>Começamos a conversar e a conversa fluía intensamente de forma leve e descontraída. Ali eu percebi
-                    quão
-                    tranquilo era conversar com você (bem diferente do que eu pensava kkkkkk).</p>
-
-                <p>Os dias passaram até chegar em um próximo treino na terça-feira, dia <strong>14/10/2025</strong>,
-                    onde
-                    fui te cumprimentar e voltei a treinar perna lá na parte de cima com o Guilherme.</p>
-
-                <p>E você saiu de lá do seu hack para vir conversar comigo que estava fazendo stiff do outro lado. Ali
-                    eu
-                    suspeitei que o desejo talvez não fosse unilateral, porém eu gosto de trabalhar com a certeza para
-                    não
-                    imaginar nada de errado.</p>
-
-                <p>Nesse sentido, quando eu passei por você pra pegar mais peso, você me fez uma pergunta que me fez
-                    abrir a
-                    mente: <em>"Você gosta de açaí?"</em> Ali eu congelei e pensei rapidamente na melhor resposta
-                    possível,
-                    porque eu sinceramente não gosto de açaí e a sua pergunta quase que me saiu como um convite.</p>
-
-                <p>Então eu disse: <strong>"Olha, se você me chamar pra tomar um sorvete, eu aceito!"</strong> E depois
-                    me
-                    retirei e fui colocar mais peso. Fiquei me perguntando com o Guilherme: "Será que é isso mesmo o que
-                    eu
-                    estou pensando?" E ele indagou: "Talvez seja, apenas tente!"</p>
-
-                <p>Então eu cancelei o meu compromisso de comer na casa dele kkkkkkk e resolvi te chamar pra tomar um
-                    sorvete depois do treino.</p>
-
-                <p>E quando eu terminei o treino, você sumiu. Ali eu quase me desesperei por ter perdido essa
-                    oportunidade,
-                    mas você apareceu na minha frente logo depois e fiz o convite. Você aceitou e fomos para a
-                    sorveteria
-                    Berry!</p>
-
-                <p>Lá nos conhecemos melhor, conversamos sobre nossos heróis da Marvel kkkkkk entre outros assuntos, até
-                    chegar o momento onde eu tinha que sair por conta da faculdade. E nesse momento que trocamos
-                    contato.
+                <p>
+                    Sua risada, seu jeito, seu olhar...
+                    Tudo em você me conquistou de uma forma que não consigo explicar.
                 </p>
 
-                <p>Depois disso, meu dia começou a ficar mais colorido. Estava acordando e dormindo com suas mensagens
-                    fofas
-                    e acolhedoras. E as nossas conversas se escalaram tão rápido e de uma forma tão natural, que eu
-                    fiquei
-                    surpreso quando você me chamou pra pizzada de Arq e Urb na outra semana.</p>
+                <p>
+                    Cada dia ao seu lado é uma bênção.
+                    Cada momento compartilhado é um tesouro que guardo no coração.
+                </p>
 
-                <p>Foi onde já conheci meu sogrão kkkkkkk. Mas pra mim, a virada de chave e vi que aquilo era real foi
-                    no
-                    dia <strong>20/10/2025</strong>, onde fomos assistir aquele filme Tron kkkkkkk (que sabemos como
-                    discorreu).</p>
+                <p>
+                    Você não é apenas meu amor,
+                    você é meu melhor amigo, meu confidente, minha paz.
+                </p>
 
-                <p>Nesse dia eu achei maravilhoso sentir seu carinho, seu amor e seu desejo por mim. E na pizzada, onde
-                    você
-                    me levou pra conhecer seu pai e suas amigas de turma, e basicamente anunciar publicamente...</p>
+                <p>
+                    E agora, quero fazer essa promessa:
+                    <strong>Prometo estar ao seu lado em cada sorriso, cada lágrima e cada vitória.
+                    Te amarei mais a cada dia que passar.</strong>
+                </p>
 
-                <p>Quando chegou a sua vez de se apresentar lá, e você foi questionada sobre seu estado civil, você
-                    levantou
-                    o braço e disse: <strong class="highlight-special">"Sou compromissada!"</strong></p>
-
-                <p>Ali eu vi que o que estávamos vivendo era <strong>intenso e verdadeiro</strong>.</p>
+                <p style="margin-top: 25px; font-style: italic; font-size: 1.1em; color: #C2185B;">
+                    Você é e sempre será meu maior tesouro.
+                </p>
             </div>
         </div>
 
-        <!-- SEÇÃO 2: MOMENTOS ESPECIAIS -->
+        <!-- SEÇÃO 2: O QUE SINTO POR VOCÊ -->
         <div class="content-section">
             <div class="section-title">
-                <span>✨</span> Momentos Que Guardo no Coração
+                <span>💖</span> O Que Sinto Por Você
             </div>
-            <div class="timeline" id="memoriesTimeline">
-                <!-- Momentos serão carregados aqui -->
+            <div class="section-content">
+                <p>
+                    <strong>Amanda</strong>, você é a pessoa que faz meu coração bater mais rápido.
+                </p>
+
+                <p>
+                    Seu sorriso ilumina meus dias mais cinzentos.
+                    Sua presença aquece minha alma.
+                    Seu amor me faz querer ser uma pessoa melhor a cada dia.
+                </p>
+
+                <p>
+                    Não existem palavras suficientes para descrever o que sinto.
+                    É um amor profundo, verdadeiro, eterno.
+                </p>
+
+                <p>
+                    Você é minha razão de acordar feliz,
+                    meu motivo de lutar pelos nossos sonhos,
+                    minha certeza de que a vida merece ser vivida ao máximo.
+                </p>
+
+                <p style="margin-top: 25px; font-weight: 600; font-size: 1.15em; color: #FF1744;">
+                    Te amo mais do que consigo expressar com palavras.
+                    <br>
+                    Te amo com cada batida do meu coração. 💕
+                </p>
             </div>
         </div>
 
@@ -631,7 +634,7 @@
             <div class="section-title">
                 <span>🖼️</span> Nossas Memórias
             </div>
-            <p style="margin-bottom: 15px; color: #333;">
+            <p style="margin-bottom: 20px; color: #666; font-size: 1em;">
                 Cada imagem representa um momento especial que vivemos juntos:
             </p>
             <div class="gallery" id="photoGallery">
@@ -639,41 +642,17 @@
             </div>
         </div>
 
-        <!-- SEÇÃO 4: MEUS SENTIMENTOS -->
-        <div class="content-section">
-            <div class="section-title">
-                <span>💖</span> O Que Sinto Por Você
-            </div>
-            <p id="myFeelings">
-                Amanda, desde que você entrou na minha vida, tudo mudou. Você trouxe luz, alegria e um significado
-                especial para cada dia.
-                Sinto uma conexão com você que nunca senti com ninguém - é algo profundo, verdadeiro e único.
-                Cada momento ao seu lado é especial, cada risada sua é música para meus ouvidos, e cada olhar seu aquece
-                meu coração.
-                Você me faz querer ser uma pessoa melhor, me dá força nos dias difíceis e alegria nos dias bons.
-                O que sinto por você vai além das palavras - é um sentimento que transborda do coração.
-            </p>
-        </div>
-
-        <!-- PERGUNTA PRINCIPAL -->
-        <div class="question-area">
-            <div class="question-text">
-                💕 Depois de tudo o que vivemos e compartilhamos...<br>
-                <strong>💖 Desde esse dia somos nós 💖</strong> 🌹
-            </div>
-        </div>
-
-        <!-- RESPOSTA -->
-        <div class="response" id="responseArea">
-            <!-- Será preenchido quando disser SIM -->
-        </div>
-
         <!-- RODAPÉ -->
         <div class="footer">
-            <p>Feito com ❤️ especialmente para você</p>
-            <p>💻 Esta mensagem foi criada especialmente para você e por você</p>
-            <p style="margin-top: 10px; font-size: 0.8em; color: #888;">
-                P.S.: Esta pagina já estava salva comigo, agora está com você 💾
+            <p>
+                <span class="footer-emoji">❤️</span>
+                Feito com amor especialmente para você
+                <span class="footer-emoji">❤️</span>
+            </p>
+            <p style="margin-top: 15px; font-size: 0.85em; color: #bbb;">
+                💻 Uma mensagem criada com o coração
+                <br>
+                P.S.: Esta página é só sua 💾
             </p>
         </div>
     </div>
@@ -691,14 +670,8 @@
         // ==============================================
 
         const CONFIG = {
-            // 👤 NOME DA PESSOA
             nome: "Amanda",
 
-            // 📖 NOSSA HISTÓRIA
-            historia: `Desde o momento em que nossos caminhos se cruzaram, minha vida ganhou um novo significado...`,
-
-            // 📸 NOSSAS FOTOS REAIS
-            // 📸 NOSSAS FOTOS REAIS - SUBSTITUA COM SEUS ARQUIVOS
             fotos: [
                 {
                     arquivo: "fotos/20251024_201234.jpg",
@@ -726,7 +699,7 @@
                 },
                 {
                     arquivo: "fotos/IMG-20251230-WA0015.jpg",
-                    descricao: " Pré ano novo 30/12/25"
+                    descricao: "Pré ano novo 30/12/25"
                 },
                 {
                     arquivo: "fotos/IMG-20251230-WA0016.jpg",
@@ -746,36 +719,6 @@
                 }
             ],
 
-            // 📅 MOMENTOS ESPECIAIS
-            momentos: [
-                {
-                    data: "09/10/2025",
-                    texto: "Nosso primeiro encontro na academia - quando tudo começou"
-                },
-                {
-                    data: "14/10/2025",
-                    texto: "Nosso primeiro sorvete na Berry - quando nos conhecemos de verdade"
-                },
-                {
-                    data: "20/10/2025",
-                    texto: "Noite do cinema - quando senti que isso era algo real"
-                },
-                {
-                    data: "24/10/2025",
-                    texto: "Pizzada da faculdade - quando você me apresentou ao mundo"
-                }
-            ],
-
-            // 💖 SEUS SENTIMENTOS
-            sentimentos: `Amanda, você transformou minha vida de uma maneira que nem consigo explicar. Quando estou com você, tudo faz sentido. Sua risada é a música mais bonita que já ouvi, seu sorriso ilumina meus dias mais cinzentos, e sua presença me faz uma pessoa melhor. Sinto algo por você que nunca senti por ninguém.`,
-
-            // 💌 MENSAGEM FINAL
-            mensagemFinal: `Amanda, obrigado por aceitar viver essa história comigo. Prometo fazer de cada dia uma aventura, te fazer rir sempre, te apoiar em tudo e te amar mais a cada dia que passar. Vamos construir algo lindo juntos! Te amo! 💕`,
-
-            // 🎵 MÚSICA (opcional)
-            musica: "", // "nossa_musica.mp3" se quiser
-
-            // 🎨 CORES PRINCIPAIS
             cores: {
                 primaria: "#FF1744",
                 secundaria: "#C2185B",
@@ -787,84 +730,48 @@
         // 🛠️ SISTEMA PRINCIPAL
         // ==============================================
 
-        // Inicialização da página
-        // ==============================================
-// ⏱️ CONTADOR DE TEMPO DE NAMORO
-// ==============================================
-
-function updateLoveCounter() {
-    const startDate = new Date(2026, 1, 9);
-    const now = new Date();
-
-    let diff = now - startDate;
-
-    const seconds = Math.floor(diff / 1000) % 60;
-    const minutes = Math.floor(diff / (1000 * 60)) % 60;
-    const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-
-    const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-    const years = Math.floor(totalDays / 365);
-    const months = Math.floor((totalDays % 365) / 30);
-    const days = (totalDays % 365) % 30;
-
-    const timeText = `
-        💖 Estamos juntos há:<br>
-        ${years} ano(s), ${months} mês(es), ${days} dia(s)<br>
-        ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
-    `;
-
-    const el = document.getElementById('loveCounter');
-    if (el) el.innerHTML = timeText;
-}
-
-setInterval(updateLoveCounter, 1000);
-updateLoveCounter();
         document.addEventListener('DOMContentLoaded', function () {
-            console.log("=== INICIANDO PEDIDO ESPECIAL ===");
+            console.log("=== INICIANDO PÁGINA REPAGINADA ===");
 
-            // 1. Preencher nome
-
-            // 2. Preencher momentos especiais
-            renderMemories();
-
-            // 3. Preencher galeria de fotos
             renderGallery();
-
-            // 4. Preencher sentimentos (já está no HTML, mas mantemos a referência)
-            document.getElementById('myFeelings').textContent = CONFIG.sentimentos;
-
-            // 5. Criar efeitos visuais
             createParticles();
             createFloatingHearts();
-
-            // 6. Aplicar cores personalizadas
+            createBackgroundPattern();
             applyCustomColors();
-
-            // 7. Iniciar música (se configurada)
-            if (CONFIG.musica) {
-                setupMusicPlayer();
-            }
+            updateLoveCounter();
 
             console.log("=== PÁGINA INICIALIZADA COM SUCESSO ===");
         });
 
-        // Renderizar momentos especiais
-        function renderMemories() {
-            const timeline = document.getElementById('memoriesTimeline');
-            timeline.innerHTML = '';
+        // ⏱️ CONTADOR DE TEMPO DE NAMORO
+        function updateLoveCounter() {
+            const startDate = new Date(2026, 1, 9);
+            const now = new Date();
 
-            CONFIG.momentos.forEach((momento, index) => {
-                const memoryDiv = document.createElement('div');
-                memoryDiv.className = 'memory';
-                memoryDiv.style.animationDelay = `${index * 0.2}s`;
-                memoryDiv.innerHTML = `
-                    <div class="memory-date">${momento.data}</div>
-                    <div class="memory-text">${momento.texto}</div>
-                `;
-                timeline.appendChild(memoryDiv);
-            });
+            let diff = now - startDate;
+
+            const seconds = Math.floor(diff / 1000) % 60;
+            const minutes = Math.floor(diff / (1000 * 60)) % 60;
+            const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+
+            const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            const years = Math.floor(totalDays / 365);
+            const months = Math.floor((totalDays % 365) / 30);
+            const days = (totalDays % 365) % 30;
+
+            const timeText = `
+                ${years} ano(s), ${months} mês(es), ${days} dia(s)<br>
+                <span style="font-size: 0.9em; color: #999;">
+                    ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
+                </span>
+            `;
+
+            const el = document.getElementById('loveCounter');
+            if (el) el.innerHTML = timeText;
         }
+
+        setInterval(updateLoveCounter, 1000);
 
         // Renderizar galeria COM FOTOS REAIS
         function renderGallery() {
@@ -876,7 +783,6 @@ updateLoveCounter();
 
             gallery.innerHTML = '';
 
-            // Verificar se CONFIG.fotos existe
             if (!CONFIG.fotos || !Array.isArray(CONFIG.fotos)) {
                 console.error("CONFIG.fotos não encontrado!");
                 gallery.innerHTML = '<div style="color: #FF1744; padding: 20px; text-align: center;">Erro ao carregar fotos</div>';
@@ -889,20 +795,11 @@ updateLoveCounter();
                 photoDiv.style.animationDelay = `${index * 0.1}s`;
                 photoDiv.title = foto.descricao;
 
-                // Criar elemento de imagem
                 const img = document.createElement('img');
                 img.src = foto.arquivo;
                 img.alt = foto.descricao;
                 img.loading = 'lazy';
 
-                // Estilos da imagem
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '10px';
-                img.style.transition = 'transform 0.5s';
-
-                // Efeito de carregamento
                 photoDiv.classList.add('loading');
 
                 img.onload = function () {
@@ -914,10 +811,9 @@ updateLoveCounter();
                     console.error(`✗ Erro ao carregar foto ${index + 1}: ${foto.arquivo}`);
                     photoDiv.classList.remove('loading');
 
-                    // Fallback: mostrar placeholder
                     photoDiv.innerHTML = `
                         <div style="font-size: 2em; color: #FF1744; margin-bottom: 10px;">📷</div>
-                        <div style="font-size: 0.9em; color: #666; text-align: center; padding: 0 10px;">
+                        <div style="font-size: 0.85em; color: #666; text-align: center; padding: 0 10px;">
                             ${foto.descricao}
                         </div>
                     `;
@@ -930,7 +826,6 @@ updateLoveCounter();
 
                 photoDiv.appendChild(img);
 
-                // Configurar clique para abrir modal
                 photoDiv.onclick = function () {
                     openPhotoModal(foto.arquivo, foto.descricao);
                 };
@@ -942,18 +837,18 @@ updateLoveCounter();
         // Criar partículas no fundo
         function createParticles() {
             const container = document.getElementById('particles');
-            const particleCount = 100;
+            const particleCount = 80;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
 
-                const size = Math.random() * 5 + 1;
+                const size = Math.random() * 4 + 1;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
-                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                particle.style.opacity = Math.random() * 0.4 + 0.1;
 
                 const duration = Math.random() * 20 + 10;
                 const delay = Math.random() * 5;
@@ -980,18 +875,31 @@ updateLoveCounter();
         function createFloatingHearts() {
             const container = document.getElementById('heartsDecoration');
             const hearts = ['❤️', '💖', '💕', '💗', '💓', '💞'];
-            const heartCount = 30;
+            const heartCount = 25;
 
             for (let i = 0; i < heartCount; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart-decoration';
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                 heart.style.left = `${Math.random() * 100}%`;
-                heart.style.fontSize = `${Math.random() * 15 + 10}px`;
+                heart.style.fontSize = `${Math.random() * 20 + 15}px`;
                 heart.style.animationDelay = `${Math.random() * 15}s`;
                 heart.style.animationDuration = `${Math.random() * 20 + 15}s`;
                 container.appendChild(heart);
             }
+        }
+
+        // Criar padrão de corações no fundo
+        function createBackgroundPattern() {
+            const pattern = document.getElementById('backgroundPattern');
+            const hearts = ['💖', '💕', '💗'];
+            let patternText = '';
+
+            for (let i = 0; i < 50; i++) {
+                patternText += hearts[Math.floor(Math.random() * hearts.length)] + ' ';
+            }
+
+            pattern.textContent = patternText;
         }
 
         // Aplicar cores personalizadas
@@ -1003,53 +911,11 @@ updateLoveCounter();
                     --color-secondary: ${CONFIG.cores.secundaria};
                     --color-accent: ${CONFIG.cores.destaque};
                 }
-                
-                .btn-yes {
-                    background: linear-gradient(45deg, 
-                        ${CONFIG.cores.primaria}, 
-                        ${CONFIG.cores.secundaria});
-                }
-                
-                .section-title {
-                    color: ${CONFIG.cores.secundaria};
-                }
-                
-                .memory-date {
-                    color: ${CONFIG.cores.secundaria};
-                }
             `;
             document.head.appendChild(style);
         }
 
-        // Configurar player de música
-        function setupMusicPlayer() {
-            const audio = document.createElement('audio');
-            audio.id = 'backgroundMusic';
-            audio.loop = true;
-            audio.volume = 0.3;
-
-            const source = document.createElement('source');
-            source.src = CONFIG.musica;
-            source.type = 'audio/mpeg';
-
-            audio.appendChild(source);
-            document.body.appendChild(audio);
-
-            window.playLoveSong = function () {
-                const music = document.getElementById('backgroundMusic');
-                if (music) {
-                    music.play().catch(e => {
-                        console.log("Música não pôde ser reproduzida:", e);
-                    });
-                }
-            };
-        }
-
-        // ==============================================
-        // 🖼️ SISTEMA DE FOTOS CORRIGIDO
-        // ==============================================
-
-        // Abrir modal de foto - VERSÃO CORRIGIDA
+        // Abrir modal de foto
         function openPhotoModal(photoPath, descricao) {
             console.log("Abrindo modal:", photoPath);
 
@@ -1062,16 +928,13 @@ updateLoveCounter();
                 return;
             }
 
-            // Atualizar legenda
             if (modalCaption) {
                 modalCaption.textContent = descricao;
             }
 
-            // Mostrar loading
-            modalImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%230f0c29"/><text x="200" y="200" font-size="30" text-anchor="middle" dy=".3em" fill="white">Carregando...</text></svg>';
+            modalImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%23333"/><text x="200" y="200" font-size="30" text-anchor="middle" dy=".3em" fill="white">Carregando...</text></svg>';
             modal.style.display = 'flex';
 
-            // Tentar carregar a foto
             const tempImg = new Image();
 
             tempImg.onload = function () {
@@ -1083,7 +946,6 @@ updateLoveCounter();
             tempImg.onerror = function () {
                 console.error("Erro ao carregar foto, tentando alternativas...");
 
-                // Tentar caminhos alternativos
                 const alternatives = [
                     photoPath,
                     `./${photoPath}`,
@@ -1097,7 +959,6 @@ updateLoveCounter();
 
                 function tryNextAlternative() {
                     if (currentIndex >= alternatives.length) {
-                        // Todas as alternativas falharam
                         modalImg.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><rect width="400" height="400" fill="%23FF1744"/><text x="200" y="180" font-size="60" text-anchor="middle" fill="white">📷</text><text x="200" y="250" font-size="20" text-anchor="middle" fill="white">Foto não encontrada</text></svg>';
                         return;
                     }
@@ -1128,208 +989,14 @@ updateLoveCounter();
             }
         }
 
-        // ==============================================
-        // 💖 SISTEMA DE RESPOSTA
-        // ==============================================
-
-        // FUNÇÃO QUANDO CLICA EM SIM
-        function showResponse(isYes) {
-            if (!isYes) return;
-
-            const responseArea = document.getElementById('responseArea');
-            const buttons = document.querySelector('.buttons-container');
-            const questionText = document.querySelector('.question-text');
-
-            // Preencher resposta
-            responseArea.innerHTML = `
-                <div style="font-size: 4em; margin-bottom: 20px;">🎉💖🎊</div>
-                <h2 style="color: #C2185B; margin-bottom: 20px;">SIM! ACEITO COM MUITO AMOR!</h2>
-                <p style="font-size: 1.3em; line-height: 1.6; margin-bottom: 30px; color: #333;">
-                    ${CONFIG.mensagemFinal}
-                </p>
-                <div style="background: rgba(255, 215, 0, 0.15); padding: 20px; border-radius: 10px; margin-top: 30px; border: 2px solid #FFD700;">
-                    <p style="color: #C2185B; margin-bottom: 10px; font-weight: bold;">
-                        📅 Data do início do nosso namoro oficialmente:
-                    </p>
-                    <p style="font-size: 1.5em; font-weight: bold; color: #333;">
-                        ${new Date().toLocaleDateString('pt-BR', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            })}
-                    </p>
-                </div>
-            `;
-
-            // Mostrar resposta
-            responseArea.style.display = 'block';
-            buttons.style.display = 'none';
-
-            questionText.innerHTML = '🎉 <strong>AGORA SOMOS OFICIALMENTE NAMORADOS!</strong> 🎉';
-            questionText.style.color = '#C2185B';
-            questionText.style.textShadow = '0 0 10px #FF1744';
-
-            // Efeitos especiais
-            createCelebration();
-
-            // Tocar música se configurada
-            if (CONFIG.musica && window.playLoveSong) {
-                window.playLoveSong();
+        // Fechar modal ao clicar fora
+        window.onclick = function (event) {
+            const modal = document.getElementById('photoModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
             }
-
-            // Rolar para a resposta
-            setTimeout(() => {
-                responseArea.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
-                });
-            }, 500);
         }
-
-        // FUNÇÃO QUANDO CLICA EM NÃO
-        function handleNoButton() {
-            const noBtn = document.getElementById('noBtn');
-            const yesBtn = document.querySelector('.btn-yes');
-
-            const responses = [
-                "Tem certeza? 😢",
-                "Pensa bem! 💕",
-                "Dá outra chance... 🥺",
-                "Vamos conversar? 🤔",
-                "Insisto! 😊",
-                "Por favor? ❤️",
-                "Eu te amo tanto! 💖",
-                "Diz que sim! 🥰"
-            ];
-
-            // Mover botão
-            const container = document.querySelector('.question-area');
-            const maxX = container.clientWidth - noBtn.clientWidth - 40;
-            const maxY = 50;
-
-            noBtn.style.position = 'relative';
-            noBtn.style.left = `${Math.random() * maxX}px`;
-            noBtn.style.top = `${Math.random() * maxY - maxY / 2}px`;
-            noBtn.textContent = responses[Math.floor(Math.random() * responses.length)];
-
-            // Destacar botão SIM
-            yesBtn.style.transform = 'scale(1.15)';
-            yesBtn.style.boxShadow = '0 0 30px rgba(255, 23, 68, 0.8)';
-
-            setTimeout(() => {
-                yesBtn.style.transform = 'scale(1.1)';
-                yesBtn.style.boxShadow = '0 15px 35px rgba(255, 23, 68, 0.6)';
-            }, 300);
-
-            // Efeito de coração partido
-            const brokenHeart = document.createElement('div');
-            brokenHeart.textContent = '💔';
-            brokenHeart.style.position = 'absolute';
-            brokenHeart.style.fontSize = '30px';
-            brokenHeart.style.left = `${Math.random() * 100}%`;
-            brokenHeart.style.top = `${Math.random() * 100}%`;
-            brokenHeart.style.opacity = '0.7';
-            brokenHeart.style.animation = 'fadeOut 2s forwards';
-            brokenHeart.style.pointerEvents = 'none';
-            document.querySelector('.question-area').appendChild(brokenHeart);
-
-            setTimeout(() => {
-                brokenHeart.remove();
-            }, 2000);
-        }
-
-        // Criar efeitos de celebração
-        function createCelebration() {
-            createConfetti();
-
-            document.body.style.animation = 'celebratePulse 0.5s 3';
-            setTimeout(() => {
-                document.body.style.animation = '';
-            }, 1500);
-        }
-
-        // Criar confetes
-        function createConfetti() {
-            const confettiContainer = document.createElement('div');
-            confettiContainer.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-                z-index: 9999;
-            `;
-            document.body.appendChild(confettiContainer);
-
-            const colors = [
-                CONFIG.cores.primaria,
-                CONFIG.cores.secundaria,
-                CONFIG.cores.destaque,
-                '#ffffff',
-                '#FFB6C1'
-            ];
-
-            for (let i = 0; i < 150; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
-                if (Math.random() > 0.5) {
-                    confetti.style.borderRadius = '50%';
-                }
-
-                confetti.style.width = `${Math.random() * 15 + 5}px`;
-                confetti.style.height = `${Math.random() * 15 + 5}px`;
-                confetti.style.position = 'absolute';
-                confetti.style.left = `${Math.random() * 100}%`;
-                confetti.style.top = '-20px';
-
-                confettiContainer.appendChild(confetti);
-
-                const animation = confetti.animate([
-                    {
-                        transform: `translate(0, 0) rotate(0deg)`,
-                        opacity: 1
-                    },
-                    {
-                        transform: `translate(${Math.random() * 200 - 100}px, ${window.innerHeight + 100}px) rotate(${Math.random() * 720}deg)`,
-                        opacity: 0
-                    }
-                ], {
-                    duration: Math.random() * 3000 + 2000,
-                    easing: 'cubic-bezier(0.1, 0.8, 0.9, 0.2)'
-                });
-
-                animation.onfinish = () => confetti.remove();
-            }
-
-            setTimeout(() => {
-                confettiContainer.remove();
-            }, 5000);
-        }
-
-        // Adicionar keyframes para animações
-        const extraStyles = document.createElement('style');
-        extraStyles.textContent = `
-            @keyframes celebratePulse {
-                0%, 100% { filter: brightness(1); }
-                50% { filter: brightness(1.2); }
-            }
-            
-            @keyframes fadeOut {
-                from { opacity: 0.7; transform: scale(1); }
-                to { opacity: 0; transform: scale(0); }
-            }
-        `;
-        document.head.appendChild(extraStyles);
-
-        // Atalho Enter para SIM
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                showResponse(true);
-            }
-        });
     </script>
 </body>
+
 </html>
