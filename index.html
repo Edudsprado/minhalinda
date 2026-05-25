@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💌 Apenas pra você</title>
+    <title>💌 Feliz Dia dos Namorados</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* RESET E CONFIGURAÇÕES GERAIS */
@@ -15,12 +15,26 @@
         }
 
         body {
-            background: linear-gradient(135deg, #FFF0F5, #FFB6C1, #FF69B4);
+            background: linear-gradient(135deg, #FF69B4, #FF1744, #FFB6C1, #FF69B4);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             color: #333;
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         /* EFEITO DE FUNDO COM PARTÍCULAS */
@@ -36,8 +50,9 @@
 
         .particle {
             position: absolute;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.4);
             border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         /* PADRÃO DE CORAÇÕES NO FUNDO */
@@ -48,7 +63,7 @@
             width: 100%;
             height: 100%;
             z-index: -2;
-            opacity: 0.05;
+            opacity: 0.08;
             font-size: 100px;
             line-height: 1;
             color: #FF1744;
@@ -61,14 +76,14 @@
             max-width: 900px;
             margin: 40px auto;
             padding: 40px;
-            background: rgba(255, 255, 255, 0.97);
+            background: linear-gradient(135deg, rgba(255, 240, 245, 0.98), rgba(255, 182, 193, 0.95));
             backdrop-filter: blur(10px);
             border-radius: 25px;
-            border: 3px solid #FF1744;
+            border: 4px solid #FF1744;
             box-shadow:
-                0 0 80px rgba(255, 23, 68, 0.25),
-                0 20px 60px rgba(255, 107, 148, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+                0 0 80px rgba(255, 23, 68, 0.35),
+                0 20px 60px rgba(255, 107, 148, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
             position: relative;
             z-index: 1;
             animation: slideInUp 0.8s ease-out;
@@ -91,7 +106,10 @@
             margin-bottom: 50px;
             position: relative;
             padding: 30px 0;
-            border-bottom: 2px solid rgba(255, 23, 68, 0.2);
+            border-bottom: 3px solid #FF1744;
+            background: linear-gradient(135deg, rgba(255, 23, 68, 0.08), rgba(255, 215, 0, 0.08));
+            border-radius: 15px;
+            padding: 40px 20px;
         }
 
         .header-section::before {
@@ -100,11 +118,12 @@
             top: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.5) 0%, transparent 70%);
             border-radius: 50%;
             animation: glowPulse 3s ease-in-out infinite;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
         }
 
         @keyframes glowPulse {
@@ -113,16 +132,17 @@
                 opacity: 0.5;
             }
             50% {
-                transform: translateX(-50%) scale(1.2);
-                opacity: 0.8;
+                transform: translateX(-50%) scale(1.3);
+                opacity: 1;
             }
         }
 
         .header-icon {
-            font-size: 60px;
+            font-size: 70px;
             margin-bottom: 15px;
             display: inline-block;
             animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 23, 68, 0.4));
         }
 
         @keyframes float {
@@ -130,14 +150,14 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-15px);
+                transform: translateY(-20px);
             }
         }
 
         .header-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3em;
-            background: linear-gradient(45deg, #FF1744, #C2185B, #FFD700);
+            font-size: 3.2em;
+            background: linear-gradient(45deg, #FF1744, #C2185B, #FFD700, #FF1744);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -148,49 +168,86 @@
         }
 
         .header-subtitle {
-            font-size: 1.1em;
+            font-size: 1.3em;
             color: #C2185B;
-            margin-bottom: 20px;
-            font-weight: 600;
+            margin-bottom: 10px;
+            font-weight: 700;
             letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .feliz-dia {
+            font-size: 1.4em;
+            color: #FF1744;
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         .love-counter-box {
-            background: linear-gradient(135deg, rgba(255, 23, 68, 0.08), rgba(255, 182, 193, 0.1));
-            border: 2px solid #FF1744;
-            border-radius: 15px;
-            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 23, 68, 0.15), rgba(255, 215, 0, 0.15));
+            border: 3px solid #FF1744;
+            border-radius: 20px;
+            padding: 30px;
             margin-top: 25px;
             display: inline-block;
-            min-width: 400px;
+            min-width: 420px;
+            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.2);
         }
 
         .love-counter-box h3 {
             color: #C2185B;
-            font-size: 0.95em;
-            margin-bottom: 10px;
-            font-weight: 600;
+            font-size: 1em;
+            margin-bottom: 15px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
         #loveCounter {
-            font-size: 1.3em;
-            color: #333;
-            line-height: 1.8;
-            font-weight: 600;
+            font-size: 1.4em;
+            color: #FF1744;
+            line-height: 2;
+            font-weight: 700;
         }
 
         /* ========== SEÇÕES DE CONTEÚDO ========== */
         .content-section {
             margin: 40px 0;
-            padding: 35px;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.08), rgba(255, 240, 245, 0.1));
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.25), rgba(255, 215, 0, 0.1));
             border-radius: 20px;
-            border-left: 5px solid #FF1744;
+            border-left: 6px solid #FF1744;
+            border-top: 3px solid #C2185B;
+            border-right: 3px solid #FFD700;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 5px 20px rgba(255, 23, 68, 0.08);
+            box-shadow: 0 8px 30px rgba(255, 23, 68, 0.15);
             animation: fadeInUp 0.8s ease-out both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         @keyframes fadeInUp {
@@ -217,26 +274,28 @@
         }
 
         .content-section:hover {
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.15), rgba(255, 240, 245, 0.15));
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.15);
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.35), rgba(255, 215, 0, 0.2));
+            transform: translateY(-10px);
+            box-shadow: 0 15px 50px rgba(255, 23, 68, 0.25);
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            color: #C2185B;
-            font-size: 2em;
-            margin-bottom: 20px;
+            color: #FF1744;
+            font-size: 2.2em;
+            margin-bottom: 25px;
             display: flex;
             align-items: center;
             gap: 15px;
-            font-weight: 700;
+            font-weight: 900;
+            text-shadow: 0 2px 8px rgba(255, 23, 68, 0.1);
         }
 
         .section-title span {
-            font-size: 1.4em;
+            font-size: 1.5em;
             display: inline-block;
             animation: bounce 2s infinite;
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.5));
         }
 
         @keyframes bounce {
@@ -244,18 +303,20 @@
                 transform: translateY(0);
             }
             50% {
-                transform: translateY(-10px);
+                transform: translateY(-15px);
             }
         }
 
         .section-content {
             color: #333;
-            line-height: 1.9;
-            font-size: 1.05em;
+            line-height: 2;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 2;
         }
 
         .section-content p {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             text-align: justify;
         }
 
@@ -268,13 +329,13 @@
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            gap: 18px;
+            margin-top: 25px;
         }
 
         .photo-item {
             aspect-ratio: 1;
-            background: rgba(255, 182, 193, 0.2);
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.3), rgba(255, 215, 0, 0.2));
             border-radius: 15px;
             display: flex;
             align-items: center;
@@ -284,14 +345,14 @@
             cursor: pointer;
             overflow: hidden;
             position: relative;
-            border: 2px solid rgba(255, 23, 68, 0.2);
-            box-shadow: 0 4px 15px rgba(255, 23, 68, 0.1);
+            border: 3px solid #FF1744;
+            box-shadow: 0 6px 20px rgba(255, 23, 68, 0.2);
         }
 
         .photo-item:hover {
-            transform: scale(1.12) rotate(2deg);
-            box-shadow: 0 12px 30px rgba(255, 23, 68, 0.3);
-            border-color: #FF1744;
+            transform: scale(1.15) rotate(3deg);
+            box-shadow: 0 15px 40px rgba(255, 23, 68, 0.4);
+            border-color: #FFD700;
         }
 
         .photo-item img {
@@ -302,14 +363,14 @@
         }
 
         .photo-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .photo-item.loading {
             background: linear-gradient(90deg,
-                    rgba(255, 182, 193, 0.2) 25%,
-                    rgba(255, 182, 193, 0.4) 50%,
-                    rgba(255, 182, 193, 0.2) 75%);
+                    rgba(255, 182, 193, 0.3) 25%,
+                    rgba(255, 182, 193, 0.5) 50%,
+                    rgba(255, 182, 193, 0.3) 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
         }
@@ -326,22 +387,25 @@
         /* ========== RODAPÉ ========== */
         .footer {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            color: #999;
-            font-size: 0.95em;
-            border-top: 2px solid rgba(255, 23, 68, 0.2);
+            margin-top: 60px;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 1em;
+            border-top: 3px solid #FF1744;
+            background: linear-gradient(135deg, rgba(255, 23, 68, 0.08), rgba(255, 215, 0, 0.08));
+            border-radius: 15px;
         }
 
         .footer p {
-            margin: 10px 0;
-            font-size: 0.9em;
+            margin: 12px 0;
+            font-size: 0.95em;
+            color: #555;
         }
 
         .footer-emoji {
             display: inline-block;
-            font-size: 1.3em;
-            margin: 0 5px;
+            font-size: 1.5em;
+            margin: 0 8px;
             animation: heartbeat 1.5s infinite;
         }
 
@@ -350,7 +414,7 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(1.2);
+                transform: scale(1.3);
             }
         }
 
@@ -382,8 +446,8 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 15px;
-            border: 4px solid #FF1744;
-            box-shadow: 0 0 60px rgba(255, 23, 68, 0.5);
+            border: 5px solid #FF1744;
+            box-shadow: 0 0 80px rgba(255, 23, 68, 0.6);
             animation: slideInModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
@@ -405,20 +469,20 @@
             color: white;
             font-size: 2.5em;
             cursor: pointer;
-            background: rgba(255, 23, 68, 0.6);
-            width: 55px;
-            height: 55px;
+            background: rgba(255, 23, 68, 0.8);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
-            border: 2px solid white;
+            border: 3px solid #FFD700;
         }
 
         .close-modal:hover {
             background: rgba(255, 23, 68, 1);
-            transform: rotate(90deg) scale(1.1);
+            transform: rotate(90deg) scale(1.15);
         }
 
         .modal-caption {
@@ -426,12 +490,12 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             color: white;
-            padding: 15px 25px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            max-width: 80%;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.15em;
+            max-width: 85%;
             text-align: center;
             backdrop-filter: blur(10px);
             border: 2px solid #FF1744;
@@ -449,7 +513,7 @@
             }
 
             .section-title {
-                font-size: 1.5em;
+                font-size: 1.6em;
             }
 
             .love-counter-box {
@@ -464,20 +528,25 @@
             }
 
             .content-section {
-                padding: 20px;
+                padding: 25px;
                 margin: 20px 0;
+            }
+
+            .feliz-dia {
+                font-size: 1.1em;
             }
         }
 
         /* ========== DECORAÇÃO - CORAÇÕES FLUTUANTES ========== */
         .heart-decoration {
             position: absolute;
-            font-size: 20px;
-            opacity: 0.6;
+            font-size: 25px;
+            opacity: 0.7;
             z-index: 0;
             animation: floatHeart 15s infinite linear;
             color: #FF1744;
             pointer-events: none;
+            filter: drop-shadow(0 0 3px rgba(255, 215, 0, 0.6));
         }
 
         @keyframes floatHeart {
@@ -486,10 +555,10 @@
                 opacity: 0;
             }
             10% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             90% {
-                opacity: 0.7;
+                opacity: 0.8;
             }
             100% {
                 transform: translateY(-100px) rotate(360deg);
@@ -510,8 +579,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shine 3s infinite;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shine 4s infinite;
         }
 
         @keyframes shine {
@@ -543,6 +612,7 @@
         <!-- ========== NOVO CABEÇALHO ========== -->
         <div class="header-section">
             <div class="header-icon">💌</div>
+            <div class="feliz-dia">🌹 Feliz Dia dos Namorados 🌹</div>
             <h1 class="header-title">Amanda & Eduardo</h1>
             <p class="header-subtitle">Uma história de amor que começou no coração</p>
             
@@ -588,8 +658,10 @@
                     Te amarei mais a cada dia que passar.</strong>
                 </p>
 
-                <p style="margin-top: 25px; font-style: italic; font-size: 1.1em; color: #C2185B;">
-                    Você é e sempre será meu maior tesouro.
+                <p style="margin-top: 30px; font-style: italic; font-size: 1.15em; color: #C2185B; font-weight: 600;">
+                    🌹 Você é e sempre será meu maior tesouro.
+                    <br>
+                    Feliz Dia dos Namorados, meu amor! 💕
                 </p>
             </div>
         </div>
@@ -621,10 +693,13 @@
                     minha certeza de que a vida merece ser vivida ao máximo.
                 </p>
 
-                <p style="margin-top: 25px; font-weight: 600; font-size: 1.15em; color: #FF1744;">
+                <p style="margin-top: 30px; font-weight: 700; font-size: 1.2em; color: #FF1744;">
                     Te amo mais do que consigo expressar com palavras.
                     <br>
                     Te amo com cada batida do meu coração. 💕
+                    <br>
+                    <br>
+                    <span style="font-style: italic; color: #C2185B;">Feliz Dia dos Namorados, meu amor! 🌹</span>
                 </p>
             </div>
         </div>
@@ -634,8 +709,8 @@
             <div class="section-title">
                 <span>🖼️</span> Nossas Memórias
             </div>
-            <p style="margin-bottom: 20px; color: #666; font-size: 1em;">
-                Cada imagem representa um momento especial que vivemos juntos:
+            <p style="margin-bottom: 20px; color: #666; font-size: 1.05em; font-weight: 600;">
+                ✨ Cada imagem representa um momento especial que vivemos juntos:
             </p>
             <div class="gallery" id="photoGallery">
                 <!-- Fotos serão carregadas aqui -->
@@ -649,10 +724,15 @@
                 Feito com amor especialmente para você
                 <span class="footer-emoji">❤️</span>
             </p>
-            <p style="margin-top: 15px; font-size: 0.85em; color: #bbb;">
+            <p style="margin-top: 20px; font-size: 0.95em; color: #666; font-weight: 600;">
                 💻 Uma mensagem criada com o coração
                 <br>
                 P.S.: Esta página é só sua 💾
+                <br>
+                <br>
+                <span style="color: #FF1744; font-weight: 700; font-size: 1.1em;">
+                    🌹 Feliz Dia dos Namorados! 🌹
+                </span>
             </p>
         </div>
     </div>
@@ -731,7 +811,7 @@
         // ==============================================
 
         document.addEventListener('DOMContentLoaded', function () {
-            console.log("=== INICIANDO PÁGINA REPAGINADA ===");
+            console.log("=== INICIANDO PÁGINA COM MUITA COR ===");
 
             renderGallery();
             createParticles();
@@ -761,8 +841,8 @@
             const days = (totalDays % 365) % 30;
 
             const timeText = `
-                ${years} ano(s), ${months} mês(es), ${days} dia(s)<br>
-                <span style="font-size: 0.9em; color: #999;">
+                💝 ${years} ano(s), ${months} mês(es), ${days} dia(s)<br>
+                <span style="font-size: 0.9em; color: #C2185B;">
                     ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}
                 </span>
             `;
@@ -812,12 +892,12 @@
                     photoDiv.classList.remove('loading');
 
                     photoDiv.innerHTML = `
-                        <div style="font-size: 2em; color: #FF1744; margin-bottom: 10px;">📷</div>
-                        <div style="font-size: 0.85em; color: #666; text-align: center; padding: 0 10px;">
+                        <div style="font-size: 2.5em; color: #FF1744; margin-bottom: 10px;">📷</div>
+                        <div style="font-size: 0.85em; color: #666; text-align: center; padding: 0 10px; font-weight: 600;">
                             ${foto.descricao}
                         </div>
                     `;
-                    photoDiv.style.background = 'rgba(255, 23, 68, 0.1)';
+                    photoDiv.style.background = 'rgba(255, 23, 68, 0.15)';
                     photoDiv.style.display = 'flex';
                     photoDiv.style.flexDirection = 'column';
                     photoDiv.style.alignItems = 'center';
@@ -837,18 +917,18 @@
         // Criar partículas no fundo
         function createParticles() {
             const container = document.getElementById('particles');
-            const particleCount = 80;
+            const particleCount = 100;
 
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
 
-                const size = Math.random() * 4 + 1;
+                const size = Math.random() * 5 + 2;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 particle.style.left = `${Math.random() * 100}%`;
                 particle.style.top = `${Math.random() * 100}%`;
-                particle.style.opacity = Math.random() * 0.4 + 0.1;
+                particle.style.opacity = Math.random() * 0.5 + 0.2;
 
                 const duration = Math.random() * 20 + 10;
                 const delay = Math.random() * 5;
@@ -862,9 +942,9 @@
             style.textContent = `
                 @keyframes floatParticle {
                     0% { transform: translateY(0) translateX(0); }
-                    25% { transform: translateY(-20px) translateX(10px); }
-                    50% { transform: translateY(-40px) translateX(0); }
-                    75% { transform: translateY(-20px) translateX(-10px); }
+                    25% { transform: translateY(-25px) translateX(15px); }
+                    50% { transform: translateY(-50px) translateX(0); }
+                    75% { transform: translateY(-25px) translateX(-15px); }
                     100% { transform: translateY(0) translateX(0); }
                 }
             `;
@@ -874,15 +954,15 @@
         // Criar corações flutuantes
         function createFloatingHearts() {
             const container = document.getElementById('heartsDecoration');
-            const hearts = ['❤️', '💖', '💕', '💗', '💓', '💞'];
-            const heartCount = 25;
+            const hearts = ['❤️', '💖', '💕', '💗', '💓', '💞', '💝'];
+            const heartCount = 35;
 
             for (let i = 0; i < heartCount; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart-decoration';
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                 heart.style.left = `${Math.random() * 100}%`;
-                heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+                heart.style.fontSize = `${Math.random() * 25 + 18}px`;
                 heart.style.animationDelay = `${Math.random() * 15}s`;
                 heart.style.animationDuration = `${Math.random() * 20 + 15}s`;
                 container.appendChild(heart);
@@ -892,10 +972,10 @@
         // Criar padrão de corações no fundo
         function createBackgroundPattern() {
             const pattern = document.getElementById('backgroundPattern');
-            const hearts = ['💖', '💕', '💗'];
+            const hearts = ['💖', '💕', '💗', '💝'];
             let patternText = '';
 
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 60; i++) {
                 patternText += hearts[Math.floor(Math.random() * hearts.length)] + ' ';
             }
 
