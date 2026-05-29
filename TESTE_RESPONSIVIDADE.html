@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Teste de Responsividade</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .info {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .screen-size {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 15px 0;
+        }
+
+        .device-label {
+            font-size: 1.2em;
+            color: #764ba2;
+            font-weight: 600;
+        }
+
+        .test-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .test-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .test-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .test-card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .test-card p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .gallery-test {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.1);
+        }
+
+        .checklist {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .checklist li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checklist li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .breakpoints {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .breakpoint-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-left: 5px solid #667eea;
+            border-radius: 5px;
+        }
+
+        .breakpoint-item strong {
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .instructions {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .instructions h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .test-sections {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-test {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .info {
+                padding: 15px;
+            }
+
+            .test-card {
+                padding: 15px;
+            }
+
+            .test-card h2 {
+                font-size: 1.2em;
+            }
+
+            .gallery-test {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item {
+                font-size: 1.5em;
+            }
+
+            .instructions {
+                padding: 15px;
+            }
+
+            .instructions h3 {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🧪 Teste de Responsividade</h1>
+
+        <div class="info">
+            <div class="device-label" id="device">Redimensione a janela para testar!</div>
+            <div class="screen-size" id="screenSize">-</div>
+            <p style="color: #999; margin-top: 10px;">Pressione F12 e use Ctrl+Shift+M para modo mobile</p>
+        </div>
+
+        <div class="instructions">
+            <h3>📱 Como Testar:</h3>
+            <ol>
+                <li><strong>Chrome/Firefox:</strong> F12 → Ctrl+Shift+M (Toggle device toolbar)</li>
+                <li><strong>Selecione dispositivos:</strong> iPhone SE (375px), Samsung (360px), iPad (768px)</li>
+                <li><strong>Verificar pontos:</strong> Galeria, Texto, Espaçamento</li>
+                <li><strong>Abra valentine.html</strong> no mesmo navegador para comparar</li>
+            </ol>
+        </div>
+
+        <div class="breakpoints">
+            <h3 style="color: #667eea; margin-bottom: 15px;">📏 Breakpoints Implementados:</h3>
+
+            <div class="breakpoint-item">
+                <strong>📱 Mobile (< 480px)</strong><br />
+                        Galeria: 2 colunas • Header: 45px • Padding: 15px • Font: 0.95em
+            </div>
+
+            <div class="breakpoint-item">
+                <strong>📱 Tablet (480-768px)</strong><br />
+                Galeria: 2-3 colunas • Header: 55px • Padding: 25px • Font: 1em
+            </div>
+
+            <div class="breakpoint-item">
+                <strong>🖥️ Desktop (> 768px)</strong><br />
+                Galeria: 3-4 colunas • Header: 70px • Padding: 40px • Font: 1.1em
+            </div>
+        </div>
+
+        <div class="test-sections">
+            <div class="test-card">
+                <h2>📸 Galeria Responsiva</h2>
+                <p>A galeria se adapta para 2, 3 ou 4 colunas conforme o tamanho da tela.</p>
+                <div class="gallery-test">
+                    <div class="gallery-item">❤️</div>
+                    <div class="gallery-item">💕</div>
+                    <div class="gallery-item">💖</div>
+                    <div class="gallery-item">💗</div>
+                    <div class="gallery-item">💝</div>
+                    <div class="gallery-item">💞</div>
+                </div>
+            </div>
+
+            <div class="test-card">
+                <h2>✅ Checklist Mobile</h2>
+                <ul class="checklist">
+                    <li>Galeria em 2 colunas</li>
+                    <li>Texto legível (14px+)</li>
+                    <li>Sem scroll horizontal</li>
+                    <li>Botões 44x44px</li>
+                    <li>Padding adequado</li>
+                </ul>
+            </div>
+
+            <div class="test-card">
+                <h2>✅ Checklist Desktop</h2>
+                <ul class="checklist">
+                    <li>Galeria em 3-4 colunas</li>
+                    <li>Layout completo</li>
+                    <li>Hover effects ativos</li>
+                    <li>Sombras visíveis</li>
+                    <li>Espaçamento generoso</li>
+                </ul>
+            </div>
+
+            <div class="test-card">
+                <h2>📝 Texto Responsivo</h2>
+                <p><strong>Desktop:</strong> Fontes completas com todas as animações</p>
+                <p><strong>Mobile:</strong> Fontes reduzidas mas legíveis e bem espaçadas</p>
+                <p>O texto em mobile usa <code>text-align: left</code> para melhor legibilidade</p>
+            </div>
+
+            <div class="test-card">
+                <h2>🎨 CSS Grid</h2>
+                <p><strong>Desktop:</strong> <code>minmax(140px, 1fr)</code></p>
+                <p><strong>Tablet:</strong> <code>minmax(110px, 1fr)</code></p>
+                <p><strong>Mobile:</strong> <code>minmax(80px, 1fr)</code></p>
+                <p>Adapta automaticamente!</p>
+            </div>
+
+            <div class="test-card">
+                <h2>🎯 Touch Friendly</h2>
+                <ul class="checklist">
+                    <li>Sem hover em mobile</li>
+                    <li>Usar :active para feedback</li>
+                    <li>Botões grandes (44x44)</li>
+                    <li>Espaçamento entre elementos</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; color: white; margin-top: 40px; padding: 20px;">
+            <p><strong>💡 Dica:</strong> Abra valentine.html e redimensione para ver em ação!</p>
+            <p style="margin-top: 20px; font-size: 0.9em; opacity: 0.8;">
+                Criado com ❤️ por GitHub Copilot
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function updateScreenSize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            const screenSize = document.getElementById('screenSize');
+            const device = document.getElementById('device');
+
+            screenSize.textContent = `${width}px × ${height}px`;
+
+            if (width < 360) {
+                device.textContent = '📱 Micro Mobile (Extra Small)';
+            } else if (width < 480) {
+                device.textContent = '📱 Mobile (iPhone SE) - 2 Colunas';
+            } else if (width < 768) {
+                device.textContent = '📱 Tablet (iPad Mini) - 3 Colunas';
+            } else if (width < 1024) {
+                device.textContent = '🖥️ Desktop Pequeno - 3-4 Colunas';
+            } else {
+                device.textContent = '🖥️ Desktop Completo - 4+ Colunas';
+            }
+        }
+
+        window.addEventListener('resize', updateScreenSize);
+        updateScreenSize();
+    </script>
+</body>
+
+</html>
